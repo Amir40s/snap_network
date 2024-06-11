@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "979284948693",
+    "project_id": "snap-network-bd55a",
+    "storage_bucket": "snap-network-bd55a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:979284948693:android:98fc73aca5342d6a5ad45c",
+        "android_client_info": {
+          "package_name": "com.solinovation.snap_network"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBym8GJ-Ca4FbgrIGBj0_Sv4a8QgMmn12o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
