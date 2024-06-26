@@ -43,9 +43,13 @@ class ProfileHeader extends StatelessWidget {
                          ),
                        ) : Align(
                            alignment: AlignmentDirectional.center,
-                           child: CircleAvatar(
-                             radius: 50.0,
-                             child: ImageLoaderWidget(imageUrl: provider.profilePic,),
+                           child: Container(
+                             width: 100.0,
+                             height: 100.0,
+                             child: ClipRRect(
+                               borderRadius: BorderRadius.circular(50.0),
+                               child: ImageLoaderWidget(imageUrl: provider.profilePic,),
+                             ),
                            )
                        ),
                      ),
@@ -65,7 +69,7 @@ class ProfileHeader extends StatelessWidget {
                  TextWidget(text: "Referral Code: ${provider.username}".toString(), size: 12.0,color: Colors.black,isBold: true),
                  SizedBox(width: 5.0,),
                  IconButton(onPressed: (){
-                   Clipboard.setData(ClipboardData(text: provider.email.toString()));
+                   Clipboard.setData(ClipboardData(text: provider.username.toString()));
                  //  showSnackBar(title: "Username Copied", subtitle: "");
                  }, icon: Icon(Icons.copy,color: Colors.black,))
                ],

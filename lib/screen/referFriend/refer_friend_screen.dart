@@ -60,7 +60,7 @@ class ReferFriendScreen extends StatelessWidget {
                       SizedBox(height: 10.0,),
                       TextWidget(text: AppString.refText,size: 12.0,),
                       SizedBox(height: 10.0,),
-                      TextWidget(text: "Your Refferal Link",size: 14.0,isBold: true,),
+                      TextWidget(text: "Your Referral Code",size: 14.0,isBold: true,),
                       SizedBox(height: 10.0,),
                       Container(
                         padding: EdgeInsets.all(5.0),
@@ -74,14 +74,14 @@ class ReferFriendScreen extends StatelessWidget {
                              children: [
                                Container(
                                    alignment: AlignmentDirectional.centerStart,
-                                   child: TextWidget(text: provider.refferralLink, size: 12.0)),
+                                   child: TextWidget(text: provider.username, size: 12.0)),
                                Align(
                                    alignment: AlignmentDirectional.centerEnd,
                                    child: ButtonWidget(text: "Copy Code",
                                      textColor: Colors.black,
                                      onClicked: (){
                                      debugPrint("click");
-                                     Clipboard.setData(ClipboardData(text: provider.refferralLink));
+                                     Clipboard.setData(ClipboardData(text: provider.username));
                                      ScaffoldMessenger.of(context).showSnackBar(
                                        const SnackBar(
                                          content: Text('Link copied to clipboard!'),

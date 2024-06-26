@@ -225,7 +225,7 @@ class _SpinWheelScreenState extends State<SpinWheelScreen> with SingleTickerProv
      double value = double.parse(UserBalance) + double.parse(prize);
     debugPrint("Spin Value: $value");
      firestore.collection("users").doc(userUID).update({
-       "balance" : value.toString(),
+       "balance" : value.toStringAsFixed(2),
      });
      firestore.collection("mining").doc(userUID).update({
        "walletBalance" : value.toDouble(),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:snap_network/helper/coupons_card.dart';
 import 'package:snap_network/helper/refer_card.dart';
 import 'package:snap_network/helper/text_widget.dart';
@@ -7,6 +8,7 @@ import 'package:snap_network/screen/referFriend/refer_friend_screen.dart';
 
 import '../../constant.dart';
 import '../../helper/market_card.dart';
+import '../../provider/account/account_provider.dart';
 import '../../res/app_assets/app_assets.dart';
 import '../spinWheel/spin_wheel_screen.dart';
 class RewardScreen extends StatelessWidget {
@@ -14,6 +16,8 @@ class RewardScreen extends StatelessWidget {
   final double defaultSpacing = 10.0;
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<AccountProvider>(context,listen: false);
+    provider.getSpin();
     return Scaffold(
       appBar: AppBar(
         title: TextWidget(text: "Rewards",size: 14.0,isBold: true,),

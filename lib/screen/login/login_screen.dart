@@ -12,6 +12,7 @@ import 'package:snap_network/res/app_assets/app_assets.dart';
 
 import '../../helper/button_loading_widget.dart';
 import '../../provider/value/value_provider.dart';
+import '../forgot/forgot_screen.dart';
 import '../signup/signup_screen.dart';
 class LoginScreen extends StatelessWidget {
    LoginScreen({super.key});
@@ -67,6 +68,16 @@ class LoginScreen extends StatelessWidget {
                      CustomPasswordTextField(hintText: "*********",
                        controller: passwordController, obscurePassword: _obscurePassword,),
 
+                     SizedBox(height: 20.0,),
+                     GestureDetector(
+                       onTap: (){
+
+                         Get.to(ForgotPasswordScreen());
+                       },
+                       child: Align(
+                           alignment: AlignmentDirectional.topEnd,
+                           child: TextWidget(text: "forgot password?", size: 12.0,isBold: true,)),
+                     ),
                      SizedBox(height: 30.0,),
                      Consumer<ValueProvider>(
                        builder: (context, provider, child){

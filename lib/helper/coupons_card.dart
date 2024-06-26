@@ -23,14 +23,14 @@ class CouponsCard extends StatelessWidget {
             children: [
               TextWidget(text: "Coupons", size: 18.0, isBold: true,),
               SizedBox(height: 10.0,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  TextWidget(text: "No. of coupons won", size: 14.0),
-                  TextWidget(text: "06", size: 14.0,isBold: true,)
-                ],
-              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   crossAxisAlignment: CrossAxisAlignment.center,
+              //   children: [
+              //     TextWidget(text: "No. of coupons won", size: 14.0),
+              //     TextWidget(text: "06", size: 14.0,isBold: true,)
+              //   ],
+              // ),
               SizedBox(height: 10.0,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -41,14 +41,14 @@ class CouponsCard extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 10.0,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  TextWidget(text: "Remaining coupons to spin", size: 14.0),
-                  TextWidget(text: "08", size: 14.0,isBold: true,color: Colors.black,)
-                ],
-              )
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   crossAxisAlignment: CrossAxisAlignment.center,
+              //   children: [
+              //     TextWidget(text: "Remaining coupons to spin", size: 14.0),
+              //     TextWidget(text: "08", size: 14.0,isBold: true,color: Colors.black,)
+              //   ],
+              // )
             ],
           ),
         );

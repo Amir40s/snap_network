@@ -137,4 +137,12 @@ class LoginSignupProvider extends ChangeNotifier{
 
   }
 
+  Future<void> sendPasswordResetEmail(String email) async {
+    try {
+      await auth.sendPasswordResetEmail(email: email);
+    } catch (e) {
+      throw e;
+    }
+  }
+
 }

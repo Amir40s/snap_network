@@ -20,6 +20,7 @@ class HomeScreen extends StatelessWidget {
     final accountProvider = Provider.of<AccountProvider>(context,listen: false);
     provider.checkMiningCompletion(context: context);
     accountProvider.fetchUserProfile();
+    provider.checkMiningCompletion(context: context);
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -75,7 +76,88 @@ class HomeScreen extends StatelessWidget {
                     ),
 
                     SizedBox(height: Get.width * 0.090,),
-                    CircularStartButton(),
+          Consumer<MiningProvider>(
+            builder: (context, provider, child){
+              return GestureDetector(
+                onTap: (){
+                  provider.startMining(context: context);
+                  firestore.collection("users").doc(auth.currentUser?.uid..toString()).update({
+                    DbKey.k_mining : "start"
+                  });
+
+                },
+                child: Column(
+                  children: [
+                    Container(
+                      width: Get.width * 0.6, // Width of the circle
+                      height: Get.width * 0.6, // Height of the circle
+                      decoration: BoxDecoration(
+                        color: Colors.black87, // Inner circle color
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: Colors.white, // Border color
+                          width: Get.width * 0.060, // Border width
+                        ),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.black45, // Shadow color
+                            blurRadius: 10, // Shadow blur
+                            offset: Offset(0, 4), // Shadow position
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          if (provider.miningStartTime != null)
+                            StreamBuilder<Duration>(
+                              stream: provider.countdownStream,
+                              builder: (context, snapshot) {
+                                if (snapshot.hasData) {
+                                  final remainingTime = snapshot.data!;
+                                  final hours = remainingTime.inHours;
+                                  final minutes = remainingTime.inMinutes.remainder(60);
+                                  final seconds = remainingTime.inSeconds.remainder(60);
+                                  return Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'Remaining Time: $hours:${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}',
+                                        style: TextStyle(fontSize: 12,color: Colors.white),
+                                      ),
+                                      SizedBox(height: 20),
+                                    ],
+                                  );
+                                } else {
+                                  return CircularProgressIndicator();
+                                }
+                              },
+                            ),
+                          ElevatedButton(
+                            onPressed: () {
+                              if (provider.miningStartTime == null) {
+                                provider.startMining(context: context);
+                              }
+                            },
+                            child: Text(provider.miningStartTime == null ? 'Start Mining' : 'Mining in Progress'),
+                          ),
+                        ],
+                      ),
+                      // child: Center(
+                      //   // child: TextWidget(text: provider.isMining ? "Stop \n${provider.hashesComputed}" : "Start",size: 24.0,isBold: true,color: Colors.white,
+                      //   child: TextWidget(
+                      //     textAlignment: TextAlign.center,
+                      //     text: provider.miningStartTime !=null && provider.miningStartTime!.toLocal().toString() != "1970-01-01T00:00:00.000"
+                      //         ? 'Remaining Time: ${provider.remainingTime.inHours}:${provider.remainingTime.inMinutes.remainder(60).toString().padLeft(2, '0')}:${provider.remainingTime.inSeconds.remainder(60).toString().padLeft(2, '0')}'
+                      //         : 'Mining not started',size: 18.0,isBold: true,color: Colors.white,
+                      //   ),
+                      // ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
                   ],
                 ),
               ),
@@ -363,49 +445,9 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-class CircularStartButton extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Consumer<MiningProvider>(
-      builder: (context, provider, child){
-        return GestureDetector(
-          onTap: (){
-            provider.startMining();
-             firestore.collection("users").doc(auth.currentUser?.uid..toString()).update({
-              DbKey.k_mining : "start"
-            });
-
-          },
-          child: Container(
-            width: Get.width * 0.6, // Width of the circle
-            height: Get.width * 0.6, // Height of the circle
-            decoration: BoxDecoration(
-              color: Colors.black87, // Inner circle color
-              shape: BoxShape.circle,
-              border: Border.all(
-                color: Colors.white, // Border color
-                width: Get.width * 0.060, // Border width
-              ),
-              boxShadow: const [
-                BoxShadow(
-                  color: Colors.black45, // Shadow color
-                  blurRadius: 10, // Shadow blur
-                  offset: Offset(0, 4), // Shadow position
-                ),
-              ],
-            ),
-            child: Center(
-             // child: TextWidget(text: provider.isMining ? "Stop \n${provider.hashesComputed}" : "Start",size: 24.0,isBold: true,color: Colors.white,
-              child: TextWidget(
-                textAlignment: TextAlign.center,
-                text: provider.miningStartTime !=null && provider.miningStartTime!.toLocal().toString() != "1970-01-01T00:00:00.000"
-                    ? 'Mining started at: ${provider.miningStartTime!.toLocal()}'
-                  : 'Mining not started',size: 18.0,isBold: true,color: Colors.white,
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
-}
+// class CircularStartButton extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return
+//   }
+// }
