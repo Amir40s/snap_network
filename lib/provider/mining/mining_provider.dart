@@ -1,43 +1,3 @@
-// // lib/mining_provider.dart
-//
-// import 'dart:convert';
-// import 'dart:math';
-// import 'package:flutter/material.dart';
-// import 'package:crypto/crypto.dart';
-//
-// class MiningProvider extends ChangeNotifier {
-//   bool _isMining = false;
-//   int _hashesComputed = 0;
-//   bool _showWarning = false;
-//
-//   bool get isMining => _isMining;
-//   int get hashesComputed => _hashesComputed;
-//   bool get showWarning => _showWarning;
-//
-//   void startMining() async {
-//     _isMining = true;
-//     _hashesComputed = 0;
-//     _showWarning = true;
-//     notifyListeners();
-//
-//     await Future.delayed(Duration(milliseconds: 100)); // Ensure UI updates
-//
-//     final random = Random();
-//     while (_isMining) {
-//       final data = utf8.encode(random.nextDouble().toString());
-//       sha256.convert(data); // Perform hash computation
-//       _hashesComputed++;
-//       notifyListeners();
-//       await Future.delayed(Duration(milliseconds: 1)); // Simulate computation delay
-//     }
-//   }
-//
-//   void stopMining() {
-//     _isMining = false;
-//     notifyListeners();
-//   }
-// }
-
 import 'dart:async';
 import 'dart:developer';
 
@@ -46,8 +6,6 @@ import 'package:flutter/material.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:provider/provider.dart';
 import 'package:snap_network/constant.dart';
 import 'package:snap_network/db_key.dart';

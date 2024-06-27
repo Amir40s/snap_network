@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:snap_network/res/app_assets/app_assets.dart';
 
-import '../constant.dart';
 
 
 class ImageLoaderWidget extends StatelessWidget {
@@ -12,8 +12,8 @@ class ImageLoaderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return CachedNetworkImage(
       imageUrl: imageUrl,
-      placeholder: (context, url) => CircularProgressIndicator(color: primaryColor,), // Path to your placeholder image
-      errorWidget: (context, url, error) => Image.asset("assets/icons/ic_profile_image.webp"), // Display an error icon if the image fails to load
+      placeholder: (context, url) => CircularProgressIndicator(color: Colors.grey,), // Path to your placeholder image
+      errorWidget: (context, url, error) => Image.asset(AppAssets.logo), // Display an error icon if the image fails to load
       fit: BoxFit.cover,
     );
   }

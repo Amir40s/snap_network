@@ -5,6 +5,7 @@ import 'package:snap_network/helper/coupons_card.dart';
 import 'package:snap_network/helper/refer_card.dart';
 import 'package:snap_network/helper/text_widget.dart';
 import 'package:snap_network/screen/referFriend/refer_friend_screen.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../constant.dart';
 import '../../helper/market_card.dart';
@@ -60,7 +61,7 @@ class RewardScreen extends StatelessWidget {
                   buttonText: 'Follow Us',
                   backgroundColor: purple,
                   press: () {
-
+                      launchWebUrl(url: "https://x.com/theSnapNetwork?t=lXM3avkZdX2-S8tO3Qeavg&s=09");
                   },
                 ),
                 SizedBox(height: defaultSpacing,),
@@ -82,5 +83,11 @@ class RewardScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+  Future<void> launchWebUrl({required String url}) async {
+    final Uri uri = Uri.parse(url);
+    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+      throw 'Could not launch $url';
+    }
   }
 }
