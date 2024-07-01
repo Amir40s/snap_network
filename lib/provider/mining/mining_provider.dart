@@ -107,6 +107,7 @@ class MiningProvider with ChangeNotifier {
       if (remainingTime.isNegative) {
         _countdownTimer?.cancel();
         _miningStartTime = null;
+        notifyListeners();
         // checkMiningCompletion();
       }
     }
