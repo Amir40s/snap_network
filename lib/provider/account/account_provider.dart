@@ -105,7 +105,7 @@ class AccountProvider extends ChangeNotifier {
 
 
 
-Future<void> fetchUserProfile() async {
+ Future<void> fetchUserProfile() async {
     final uid = auth.currentUser?.uid;
     log("Runnning Profile");
     try {

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+import 'package:snap_network/provider/account/account_provider.dart';
 import '../../helper/button_loading_widget.dart';
 import '../../helper/button_widget.dart';
 import '../../helper/custom_richtext.dart';
@@ -236,7 +237,8 @@ class OTPVerifyScreen extends StatelessWidget {
                               otp3Controller.text.toString() + otp4Controller.text.toString();
                           if(otp == otpCode){
                             log(email);
-                            // valueProvider.setLoading(true);
+                            // valueProvider.setLoading(true)
+
                             Provider.of<LoginSignupProvider>(context,listen: false)
                                 .createUserAccount(
                                 referral: referral,

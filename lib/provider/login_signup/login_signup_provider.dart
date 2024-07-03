@@ -11,6 +11,7 @@ import '../../constant.dart';
 import '../../db_key.dart';
 import '../../screen/bottomBar/bottom_bar_screen.dart';
 import '../../screen/login/login_screen.dart';
+import '../account/account_provider.dart';
 import '../value/value_provider.dart';
 
 
@@ -100,6 +101,7 @@ class LoginSignupProvider extends ChangeNotifier{
 
       if(user.user!.uid.isNotEmpty){
         Provider.of<ValueProvider>(context,listen: false).setLoading(false);
+        await Provider.of<AccountProvider>(context,listen: false).fetchUserProfile();
        Get.offAll(()=> const BottomBarScreen());
       }else{
         Provider.of<ValueProvider>(context,listen: false).setLoading(false);
